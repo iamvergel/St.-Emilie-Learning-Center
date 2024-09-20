@@ -1,0 +1,19 @@
+/* SCSS HEX */
+.abouUs {
+  width: 100%;
+  height: auto;
+}
+.abouUs .content {
+  height: auto;
+  margin-top: 80px;
+}
+.abouUs .content img {
+  width: 100%;
+  height: 500px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  filter: brightness(30%) contrast(105%);
+}
+.abouUs .content .marketing {
+  top: 100vh;
+}

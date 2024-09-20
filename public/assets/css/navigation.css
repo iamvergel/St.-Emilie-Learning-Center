@@ -1,0 +1,78 @@
+/* SCSS HEX */
+.navbar {
+  background-color: #fff;
+  margin-top: 0;
+  animation: navbar 0.3s ease-in;
+  padding-block: 1rem;
+  transition: all 0.2s ease-in;
+}
+@keyframes navbar {
+  from {
+    margin-top: -6rem;
+  }
+  to {
+    margin-top: 0;
+  }
+}
+@media (max-width: 991px) {
+  .navbar {
+    margin-top: -6rem;
+    animation: navbarD 0.3s ease-in;
+  }
+  @keyframes navbarD {
+    from {
+      margin-top: 0;
+    }
+    to {
+      margin-top: -6rem;
+      display: none;
+    }
+  }
+}
+.navbar .container-fluid img {
+  border: solid 4px #008f3d;
+}
+.navbar .container-fluid .offcanvas .navbar-nav .nav-item {
+  padding-inline: 1rem;
+}
+.navbar .container-fluid .offcanvas .navbar-nav .nav-item:nth-child(1) {
+  font-weight: 700;
+}
+.navbar .container-fluid .offcanvas .navbar-nav .nav-item .nav-link {
+  letter-spacing: 1px;
+  color: #075557;
+  font-size: 15px;
+  position: relative;
+  transition: color 0.2s ease-in;
+  transition: all 0.2s linear;
+}
+.navbar .container-fluid .offcanvas .navbar-nav .nav-item .nav-link:hover {
+  color: #087a7c;
+}
+.navbar .container-fluid .offcanvas .navbar-nav .nav-item .nav-link::before, .navbar .container-fluid .offcanvas .navbar-nav .nav-item .nav-link::after {
+  content: "";
+  width: 0;
+  background-color: #087a7c;
+  height: 3px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all 0.2s ease-in;
+}
+.navbar .container-fluid .offcanvas .navbar-nav .nav-item .nav-link:hover::before, .navbar .container-fluid .offcanvas .navbar-nav .nav-item .nav-link:hover::after {
+  width: 100%;
+}
+.navbar .container-fluid .offcanvas .navbar-nav .nav-item button {
+  background-color: #08a4a7;
+  transition: all 0.2s ease-in-out;
+}
+.navbar .container-fluid .offcanvas .navbar-nav .nav-item button a {
+  color: #fff;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+.navbar .container-fluid .offcanvas .navbar-nav .nav-item button:hover {
+  background-color: #087a7c;
+  transform: scale(1.05);
+}

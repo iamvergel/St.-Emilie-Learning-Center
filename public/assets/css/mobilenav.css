@@ -1,0 +1,45 @@
+/* SCSS HEX */
+.mobilenavbar {
+  background-color: #fff;
+  margin-bottom: 0;
+  animation: navbarM 0.3s ease-in;
+}
+@keyframes navbarM {
+  from {
+    margin-bottom: -6rem;
+  }
+  to {
+    margin-bottom: 0;
+  }
+}
+@media (min-width: 991px) {
+  .mobilenavbar {
+    margin-bottom: -6rem;
+    animation: navbarD 0.3s ease-in;
+  }
+  @keyframes navbarD {
+    from {
+      margin-bottom: 0;
+    }
+    to {
+      margin-bottom: -6rem;
+      display: none;
+    }
+  }
+}
+.mobilenavbar .nav-link {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+  background-color: #fff;
+  transition: background-color 0.3s, margin-bottom 0.3s;
+}
+.mobilenavbar .nav-link i {
+  color: #075557;
+}
+.mobilenavbar .nav-link.active {
+  background-color: #bae4cc;
+}

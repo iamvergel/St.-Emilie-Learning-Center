@@ -1,0 +1,77 @@
+/* SCSS HEX */
+$tekhelet: #42327fff;
+$yellow-green: #8dc535ff;
+$white: #ffffffff;
+$midnight-blue: #2c1a6dff;
+$eerie-black: #1f1b17ff;
+$spanish-orange: #e46c2fff;
+$ash-gray: #b1c0b9ff;
+$wenge: #6f605aff;
+$forest-green: #008f3dff;
+$celadon: #bae4ccff;
+
+$aquamarine: #4dfed1ff;
+$turquoise: #0adab5ff;
+$verdigris: #08a4a7;
+$aquamarine-2: #4dfed1ff;
+$turquoise-2: #0bdbb6ff;
+$black: #000000ff;
+$ice-blue: #91ffff;
+$turquoise-3: #0bdbb6ff;
+$verdigris-2: #087a7c;
+$azure-web: #e9ffffff;
+$ice-blue-2: #91ffffff;
+
+$white: #fff;
+$text: #075557;
+
+.mobilenavbar {
+  background-color: $white;
+  margin-bottom: 0;
+  animation: navbarM 0.3s ease-in;
+
+  @keyframes navbarM {
+    from {
+      margin-bottom: -6rem;
+    }
+    to {
+      margin-bottom: 0;
+    }
+  }
+
+  @media (min-width: 991px) {
+    margin-bottom: -6rem;
+    animation: navbarD 0.3s ease-in;
+
+    @keyframes navbarD {
+      from {
+        margin-bottom: 0;
+      }
+      to {
+        margin-bottom: -6rem;
+        display: none;
+      }
+    }
+  }
+
+  .nav-link {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    background-color: $white;
+    transition: background-color 0.3s, margin-bottom 0.3s;
+
+    i {
+      color: $text; 
+    }
+
+    &.active {
+      background-color: $celadon; 
+    }
+  }
+
+}
+

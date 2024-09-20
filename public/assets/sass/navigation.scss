@@ -1,0 +1,123 @@
+/* SCSS HEX */
+$tekhelet: #42327fff;
+$yellow-green: #8dc535ff;
+$white: #ffffffff;
+$midnight-blue: #2c1a6dff;
+$eerie-black: #1f1b17ff;
+$spanish-orange: #e46c2fff;
+$ash-gray: #b1c0b9ff;
+$wenge: #6f605aff;
+$forest-green: #008f3dff;
+$celadon: #bae4ccff;
+
+$aquamarine: #4dfed1ff;
+$turquoise: #0adab5ff;
+$verdigris: #08a4a7;
+$aquamarine-2: #4dfed1ff;
+$turquoise-2: #0bdbb6ff;
+$black: #000000ff;
+$ice-blue: #91ffff;
+$turquoise-3: #0bdbb6ff;
+$verdigris-2: #087a7c;
+$azure-web: #e9ffffff;
+$ice-blue-2: #91ffffff;
+
+$white: #fff;
+$text: #075557;
+
+.navbar {
+  background-color: $white;
+  margin-top: 0;
+  animation: navbar 0.3s ease-in;
+  padding-block: 1rem;
+  transition: all 0.2s ease-in;
+
+  @keyframes navbar {
+    from {
+      margin-top: -6rem;
+    }
+    to {
+      margin-top: 0;
+    }
+  }
+
+  @media (max-width: 991px) {
+    margin-top: -6rem;
+    animation: navbarD 0.3s ease-in;
+
+    @keyframes navbarD {
+      from {
+        margin-top: 0;
+      }
+      to {
+        margin-top: -6rem;
+        display: none;
+      }
+    }
+  }
+
+  .container-fluid {
+    img {
+      border: solid 4px $forest-green;
+    }
+
+    .offcanvas {
+      .navbar-nav {
+        .nav-item {
+          padding-inline: 1rem;
+
+          &:nth-child(1) {
+            font-weight: 700;
+          }
+
+          .nav-link {
+            letter-spacing: 1px;
+            color: $text;
+            font-size: 15px;
+            position: relative;
+            transition: color 0.2s ease-in;
+            transition: all 0.2s linear;
+
+            &:hover {
+              color: $verdigris-2;
+            }
+
+            &::before,
+            &::after {
+              content: "";
+              width: 0;
+              background-color: $verdigris-2;
+              height: 3px;
+              position: absolute;
+              bottom: 0;
+              left: 50%;
+              transform: translateX(-50%);
+              transition: all 0.2s ease-in;
+            }
+
+            &:hover::before,
+            &:hover::after {
+              width: 100%;
+            }
+          }
+
+          button {
+            background-color: $verdigris;
+            transition: all 0.2s ease-in-out;
+
+            a {
+              color: $white;
+              font-size: 15px;
+              letter-spacing: 1px;
+            }
+
+            &:hover {
+              background-color: $verdigris-2;
+              transform: scale(1.05);
+            }
+          }
+        }
+      }
+    }
+  }
+}

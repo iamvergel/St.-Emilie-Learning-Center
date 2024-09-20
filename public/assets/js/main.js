@@ -56,25 +56,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  navigationRequest.open("GET", "/components/navigation.html", true);
+  navigationRequest.open("GET", "components/navigation.html", true);
   navigationRequest.send();
 
-  mobilenavRequest.open("GET", "/components/mobilenav.html", true);
+  mobilenavRequest.open("GET", "components/mobilenav.html", true);
   mobilenavRequest.send();
 
-  landingPageRequest.open("GET", "/views/landingPage.html", true);
+  landingPageRequest.open("GET", "views/landingPage.html", true);
   landingPageRequest.send();
 
-  aboutUsRequest.open("GET", "/views/aboutus.html", true);
+  aboutUsRequest.open("GET", "views/aboutus.html", true);
   aboutUsRequest.send();
 
-  staffsRequest.open("GET", "/views/staffs.html", true);
+  staffsRequest.open("GET", "views/staffs.html", true);
   staffsRequest.send();
 
-  contactRequest.open("GET", "/views/contact.html", true);
+  contactRequest.open("GET", "views/contact.html", true);
   contactRequest.send();
 
-  footerRequest.open("GET", "/components/footer.html", true);
+  footerRequest.open("GET", "components/footer.html", true);
   footerRequest.send();
 });
 

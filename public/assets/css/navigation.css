@@ -32,13 +32,13 @@
 .navbar .container-fluid img {
   border: solid 4px #008f3d;
 }
-.navbar .container-fluid .offcanvas .navbar-nav .nav-item {
+.navbar .container-fluid .navItemSection .navbar-nav .nav-item {
   padding-inline: 1rem;
 }
-.navbar .container-fluid .offcanvas .navbar-nav .nav-item:nth-child(1) {
+.navbar .container-fluid .navItemSection .navbar-nav .nav-item:nth-child(1) {
   font-weight: 700;
 }
-.navbar .container-fluid .offcanvas .navbar-nav .nav-item .nav-link {
+.navbar .container-fluid .navItemSection .navbar-nav .nav-item .nav-link {
   letter-spacing: 1px;
   color: #075557;
   font-size: 15px;
@@ -46,10 +46,10 @@
   transition: color 0.2s ease-in;
   transition: all 0.2s linear;
 }
-.navbar .container-fluid .offcanvas .navbar-nav .nav-item .nav-link:hover {
+.navbar .container-fluid .navItemSection .navbar-nav .nav-item .nav-link:hover {
   color: #087a7c;
 }
-.navbar .container-fluid .offcanvas .navbar-nav .nav-item .nav-link::before, .navbar .container-fluid .offcanvas .navbar-nav .nav-item .nav-link::after {
+.navbar .container-fluid .navItemSection .navbar-nav .nav-item .nav-link::before, .navbar .container-fluid .navItemSection .navbar-nav .nav-item .nav-link::after {
   content: "";
   width: 0;
   background-color: #087a7c;
@@ -60,19 +60,19 @@
   transform: translateX(-50%);
   transition: all 0.2s ease-in;
 }
-.navbar .container-fluid .offcanvas .navbar-nav .nav-item .nav-link:hover::before, .navbar .container-fluid .offcanvas .navbar-nav .nav-item .nav-link:hover::after {
+.navbar .container-fluid .navItemSection .navbar-nav .nav-item .nav-link:hover::before, .navbar .container-fluid .navItemSection .navbar-nav .nav-item .nav-link:hover::after {
   width: 100%;
 }
-.navbar .container-fluid .offcanvas .navbar-nav .nav-item button {
+.navbar .container-fluid .navItemSection .navbar-nav .nav-item button {
   background-color: #08a4a7;
   transition: all 0.2s ease-in-out;
 }
-.navbar .container-fluid .offcanvas .navbar-nav .nav-item button a {
+.navbar .container-fluid .navItemSection .navbar-nav .nav-item button a {
   color: #fff;
   font-size: 15px;
   letter-spacing: 1px;
 }
-.navbar .container-fluid .offcanvas .navbar-nav .nav-item button:hover {
+.navbar .container-fluid .navItemSection .navbar-nav .nav-item button:hover {
   background-color: #087a7c;
   transform: scale(1.05);
 }

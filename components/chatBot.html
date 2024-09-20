@@ -1,0 +1,27 @@
+
+    <link rel="stylesheet" href="public\assets\css\chatBot.css">
+
+<button class="chatBotButton border-0 d-flex align-items-center py-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+    <img src="/public/assets/images/logo.jpg" width="40" height="40" alt="logo" class="rounded-circle mx-3">
+    Click to open ChatBot...
+</button>
+
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title mx-2" id="offcanvasScrollingLabel">St. Emilie Learning Center</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="message" id="msg" aria-live="polite">
+        </div>
+        
+    </div>
+    <div class="offcanvas-footer">
+        <div class="question-container" id="questionContainer"></div>
+        <div class="input">
+            <input type="text" class="messageSend" id="msg_send" placeholder="New Message..." aria-label="Type your message here...">
+            <button class="send" id="reply" aria-label="Send message">Send <i class="fas fa-paper-plane"></i></button>
+        </div>
+        <div id="loadingIndicator" style="display: none;">Loading...</div>
+    </div>
+</div>

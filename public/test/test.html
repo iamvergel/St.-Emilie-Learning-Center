@@ -1,336 +1,225 @@
-<main>
-  <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <button
-        type="button"
-        data-bs-target="#myCarousel"
-        data-bs-slide-to="0"
-        class="active"
-        aria-label="Slide 1"
-        aria-current="true"
-      ></button>
-      <button
-        type="button"
-        data-bs-target="#myCarousel"
-        data-bs-slide-to="1"
-        aria-label="Slide 2"
-        class=""
-      ></button>
-      <button
-        type="button"
-        data-bs-target="#myCarousel"
-        data-bs-slide-to="2"
-        aria-label="Slide 3"
-        class=""
-      ></button>
-    </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <svg
-          class="bd-placeholder-img"
-          width="100%"
-          height="100%"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-          preserveAspectRatio="xMidYMid slice"
-          focusable="false"
-        >
-          <rect
-            width="100%"
-            height="100%"
-            fill="var(--bs-secondary-color)"
-          ></rect>
-        </svg>
-        <div class="container">
-          <div class="carousel-caption text-start">
-            <h1>Example headline.</h1>
-            <p class="opacity-75">
-              Some representative placeholder content for the first slide of the
-              carousel.
-            </p>
-            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
-          </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatBot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        ::-webkit-scrollbar {
+            width: 0;
+        }
+
+        #main {
+            height: 30vh;
+            width: 100vw;
+            max-width: 540px;
+        }
+
+        #msg_send {
+            outline: none;
+            font-size: 20px;
+            padding: 0 16px;
+            border-radius: 32px 0 32px 32px;
+            background: #ececee;
+            color: #333;
+            border: solid 1px #777;
+            border-right: none;
+        }
+
+        .input {
+            height: 7%;
+            background: linear-gradient(#ececee 50%, #1c1f46 50%);
+            display: grid;
+            grid-template-columns: 70% 30%;
+            border-radius: 32px;
+            margin: 8px 16px;
+            min-height: 42px;
+            box-shadow: inset 0 1px 0 #777;
+        }
+
+        .send {
+            outline: none;
+            font-size: 20px;
+            border: none;
+            background: #1c1f46;
+            border-radius: 32px;
+            color: #eee;
+            transition-duration: 0.2s;
+        }
+
+        .send:active {
+            font-size: 16px;
+        }
+
+        .left, .right {
+            font-size: 18px;
+            display: inline-block;
+            padding: 14px;
+            width: auto;
+            max-width: 60%;
+            margin: 8px 16px;
+            font-family: monospace;
+            word-wrap: break-word;
+        }
+
+        .left {
+            color: #000;
+            background: #b3bfca;
+            border-radius: 0 16px 16px 16px;
+        }
+
+        .right {
+            float: right;
+            color: #fff;
+            background: #1c1f46;
+            border-radius: 16px 16px 0 16px;
+        }
+
+        #msg {
+            overflow-y: scroll;
+            height: 82%;
+            padding: 0 12px;
+            scroll-behavior: smooth;
+        }
+
+        h2 {
+            text-align: center;
+            background: #1c1f46;
+            padding: 8px;
+            font-family: sans-serif;
+            color: #fff;
+            text-shadow: 1px 1px 4px #111;
+            box-shadow: 0 4px 8px #000a;
+            margin-bottom: 8px;
+        }
+
+        .bot {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: url(bot.jpg);
+            background-size: 100%;
+            margin: 10px;
+        }
+
+        h3 {
+            font-family: monospace;
+            font-size: 20px;
+        }
+
+        #robot {
+            display: flex;
+            align-items: center;
+        }
+
+        .msgCon1, .msgCon2 {
+            width: 100%;
+            display: inline-block;
+        }
+
+        .question-button {
+            margin: 5px;
+            padding: 10px 15px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .question-button:hover {
+            background: #0056b3;
+        }
+
+        .question-container {
+            margin: 10px 16px;
+        }
+    </style>
+</head>
+<body onload="init()">
+    <div id="main">
+        <h2>ChatBot</h2>
+        <div id="msg">
+            <div id="robot">
+                <div class="bot"></div>
+                <h3>Aco ChatBot</h3>
+            </div>
         </div>
-      </div>
-      <div class="carousel-item">
-        <svg
-          class="bd-placeholder-img"
-          width="100%"
-          height="100%"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-          preserveAspectRatio="xMidYMid slice"
-          focusable="false"
-        >
-          <rect
-            width="100%"
-            height="100%"
-            fill="var(--bs-secondary-color)"
-          ></rect>
-        </svg>
-        <div class="container">
-          <div class="carousel-caption">
-            <h1>Another example headline.</h1>
-            <p>
-              Some representative placeholder content for the second slide of
-              the carousel.
-            </p>
-            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
-          </div>
+        <div class="question-container" id="questionContainer"></div>
+        <div class="input">
+            <input type="text" id="msg_send" placeholder="New Message">
+            <button class="send" id="reply">Send <i class="fas fa-paper-plane"></i></button>
         </div>
-      </div>
-      <div class="carousel-item">
-        <svg
-          class="bd-placeholder-img"
-          width="100%"
-          height="100%"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-          preserveAspectRatio="xMidYMid slice"
-          focusable="false"
-        >
-          <rect
-            width="100%"
-            height="100%"
-            fill="var(--bs-secondary-color)"
-          ></rect>
-        </svg>
-        <div class="container">
-          <div class="carousel-caption text-end">
-            <h1>One more for good measure.</h1>
-            <p>
-              Some representative placeholder content for the third slide of
-              this carousel.
-            </p>
-            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <button
-      class="carousel-control-prev"
-      type="button"
-      data-bs-target="#myCarousel"
-      data-bs-slide="prev"
-    >
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button
-      class="carousel-control-next"
-      type="button"
-      data-bs-target="#myCarousel"
-      data-bs-slide="next"
-    >
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-
-  <!-- Marketing messaging and featurettes
-    ================================================== -->
-  <!-- Wrap the rest of the page in another container to center all the content. -->
-
-  <div class="container marketing">
-    <!-- Three columns of text below the carousel -->
-    <div class="row">
-      <div class="col-lg-4">
-        <svg
-          class="bd-placeholder-img rounded-circle"
-          width="140"
-          height="140"
-          xmlns="http://www.w3.org/2000/svg"
-          role="img"
-          aria-label="Placeholder"
-          preserveAspectRatio="xMidYMid slice"
-          focusable="false"
-        >
-          <title>Placeholder</title>
-          <rect
-            width="100%"
-            height="100%"
-            fill="var(--bs-secondary-color)"
-          ></rect>
-        </svg>
-        <h2 class="fw-normal">Heading</h2>
-        <p>
-          Some representative placeholder content for the three columns of text
-          below the carousel. This is the first column.
-        </p>
-        <p><a class="btn btn-secondary" href="#">View details »</a></p>
-      </div>
-      <!-- /.col-lg-4 -->
-      <div class="col-lg-4">
-        <svg
-          class="bd-placeholder-img rounded-circle"
-          width="140"
-          height="140"
-          xmlns="http://www.w3.org/2000/svg"
-          role="img"
-          aria-label="Placeholder"
-          preserveAspectRatio="xMidYMid slice"
-          focusable="false"
-        >
-          <title>Placeholder</title>
-          <rect
-            width="100%"
-            height="100%"
-            fill="var(--bs-secondary-color)"
-          ></rect>
-        </svg>
-        <h2 class="fw-normal">Heading</h2>
-        <p>
-          Another exciting bit of representative placeholder content. This time,
-          we've moved on to the second column.
-        </p>
-        <p><a class="btn btn-secondary" href="#">View details »</a></p>
-      </div>
-      <!-- /.col-lg-4 -->
-      <div class="col-lg-4">
-        <svg
-          class="bd-placeholder-img rounded-circle"
-          width="140"
-          height="140"
-          xmlns="http://www.w3.org/2000/svg"
-          role="img"
-          aria-label="Placeholder"
-          preserveAspectRatio="xMidYMid slice"
-          focusable="false"
-        >
-          <title>Placeholder</title>
-          <rect
-            width="100%"
-            height="100%"
-            fill="var(--bs-secondary-color)"
-          ></rect>
-        </svg>
-        <h2 class="fw-normal">Heading</h2>
-        <p>
-          And lastly this, the third column of representative placeholder
-          content.
-        </p>
-        <p><a class="btn btn-secondary" href="#">View details »</a></p>
-      </div>
-      <!-- /.col-lg-4 -->
-    </div>
-    <!-- /.row -->
-
-    <!-- START THE FEATURETTES -->
-
-    <hr class="featurette-divider" />
-
-    <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading fw-normal lh-1">
-          First featurette heading.
-          <span class="text-body-secondary">It’ll blow your mind.</span>
-        </h2>
-        <p class="lead">
-          Some great placeholder content for the first featurette here. Imagine
-          some exciting prose here.
-        </p>
-      </div>
-      <div class="col-md-5">
-        <svg
-          class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-          width="500"
-          height="500"
-          xmlns="http://www.w3.org/2000/svg"
-          role="img"
-          aria-label="Placeholder: 500x500"
-          preserveAspectRatio="xMidYMid slice"
-          focusable="false"
-        >
-          <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="var(--bs-secondary-bg)"></rect>
-          <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">
-            500x500
-          </text>
-        </svg>
-      </div>
     </div>
 
-    <hr class="featurette-divider" />
+    <script>
+        const qaPairs = {
+            "What is the age range for students at St. Emilie Learning Center?": "We accept students from kindergarten through grade 6, typically ages 4 to 12.",
+            "How can I enroll my child at St. Emilie Learning Center?": "You can begin the enrollment process by filling out the application form available on our website or by visiting our school office.",
+            "What are the tuition fees?": "Tuition fees vary by grade level. Please visit the Tuition & Fees section of our website or contact our office for more details.",
+            "Does the school have a uniform policy?": "Yes, we have a standard uniform that all students are required to wear. You can purchase uniforms at our school store.",
+            "What are the school hours?": "School hours are from 8:00 AM to 4:00 PM, Monday to Friday."
+        };
 
-    <div class="row featurette">
-      <div class="col-md-7 order-md-2">
-        <h2 class="featurette-heading fw-normal lh-1">
-          Oh yeah, it’s that good.
-          <span class="text-body-secondary">See for yourself.</span>
-        </h2>
-        <p class="lead">
-          Another featurette? Of course. More placeholder content here to give
-          you an idea of how this layout would work with some actual real-world
-          content in place.
-        </p>
-      </div>
-      <div class="col-md-5 order-md-1">
-        <svg
-          class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-          width="500"
-          height="500"
-          xmlns="http://www.w3.org/2000/svg"
-          role="img"
-          aria-label="Placeholder: 500x500"
-          preserveAspectRatio="xMidYMid slice"
-          focusable="false"
-        >
-          <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="var(--bs-secondary-bg)"></rect>
-          <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">
-            500x500
-          </text>
-        </svg>
-      </div>
-    </div>
+        function init() {
+            let res_elm = document.createElement("div");
+            res_elm.innerHTML = "Hello! Myself Aco, How can I help you?";
+            res_elm.setAttribute("class", "left");
+            document.getElementById('msg').appendChild(res_elm);
 
-    <hr class="featurette-divider" />
+            // Create question buttons
+            const questionContainer = document.getElementById('questionContainer');
+            for (const question in qaPairs) {
+                const button = document.createElement("button");
+                button.innerHTML = question;
+                button.className = "question-button";
+                button.onclick = () => handleQuestionClick(question);
+                questionContainer.appendChild(button);
+            }
+        }
 
-    <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading fw-normal lh-1">
-          And lastly, this one.
-          <span class="text-body-secondary">Checkmate.</span>
-        </h2>
-        <p class="lead">
-          And yes, this is the last block of representative placeholder content.
-          Again, not really intended to be actually read, simply here to give
-          you a better view of what this would look like with some actual
-          content. Your content.
-        </p>
-      </div>
-      <div class="col-md-5">
-        <svg
-          class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-          width="500"
-          height="500"
-          xmlns="http://www.w3.org/2000/svg"
-          role="img"
-          aria-label="Placeholder: 500x500"
-          preserveAspectRatio="xMidYMid slice"
-          focusable="false"
-        >
-          <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="var(--bs-secondary-bg)"></rect>
-          <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">
-            500x500
-          </text>
-        </svg>
-      </div>
-    </div>
+        const handleQuestionClick = (question) => {
+            document.getElementById('msg_send').value = question;
+            document.getElementById('reply').click();
+        };
 
-    <hr class="featurette-divider" />
+        document.getElementById('reply').addEventListener("click", (e) => {
+            e.preventDefault();
+            const req = document.getElementById('msg_send').value.trim();
 
-    <!-- /END THE FEATURETTES -->
-  </div>
-  <!-- /.container -->
+            if (!req) return;
 
-  <!-- FOOTER -->
-  <footer class="container">
-    <p class="float-end"><a href="#">Back to top</a></p>
-    <p>
-      © 2017–2024 Company, Inc. · <a href="#">Privacy</a> ·
-      <a href="#">Terms</a>
-    </p>
-  </footer>
-</main>
+            let res = qaPairs[req] || "Sorry, I couldn't find an answer to that.";
+            
+            let data_req = document.createElement('div');
+            let data_res = document.createElement('div');
+            let container1 = document.createElement('div');
+            let container2 = document.createElement('div');
+
+            container1.setAttribute("class", "msgCon1");
+            container2.setAttribute("class", "msgCon2");
+
+            data_req.innerHTML = req;
+            data_res.innerHTML = res;
+
+            data_req.setAttribute("class", "right");
+            data_res.setAttribute("class", "left");
+
+            let message = document.getElementById('msg');
+            message.appendChild(container1);
+            message.appendChild(container2);
+            container1.appendChild(data_req);
+            container2.appendChild(data_res);
+
+            document.getElementById('msg_send').value = "";
+
+            const scroll = () => {
+                const scrollMsg = document.getElementById('msg');
+                scrollMsg.scrollTop = scrollMsg.scrollHeight;
+            };
+            scroll();
+        });
+    </script>
+</body>
+</html>

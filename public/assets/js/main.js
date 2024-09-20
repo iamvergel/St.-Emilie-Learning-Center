@@ -1,139 +1,163 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const navigationRequest = new XMLHttpRequest();
-  const mobilenavRequest = new XMLHttpRequest();
-  const landingPageRequest = new XMLHttpRequest();
-  const aboutUsRequest = new XMLHttpRequest();
-  const staffsRequest = new XMLHttpRequest();
-  const contactRequest = new XMLHttpRequest();
-  const footerRequest = new XMLHttpRequest();
+  const requests = [
+      { url: "components/navigation.html", elementId: "navigation" },
+      { url: "components/mobilenav.html", elementId: "mobilenav" },
+      { url: "views/landingPage.html", elementId: "landingPage" },
+      { url: "views/aboutus.html", elementId: "aboutUs" },
+      { url: "views/staffs.html", elementId: "staff" },
+      { url: "views/contact.html", elementId: "contactUs" },
+      { url: "components/footer.html", elementId: "footer" }
+  ];
 
-  navigationRequest.onload = function () {
-    if (navigationRequest.status === 200) {
-      document.getElementById("navigation").innerHTML =
-        navigationRequest.responseText;
-    }
-  };
-
-  mobilenavRequest.onload = function () {
-    if (mobilenavRequest.status === 200) {
-      document.getElementById("mobilenav").innerHTML =
-        mobilenavRequest.responseText;
-    }
-  };
-
-  landingPageRequest.onload = function () {
-    if (landingPageRequest.status === 200) {
-      document.getElementById("landingPage").innerHTML =
-        landingPageRequest.responseText;
-    }
-  };
-
-  aboutUsRequest.onload = function () {
-    if (aboutUsRequest.status === 200) {
-      document.getElementById("aboutUs").innerHTML =
-        aboutUsRequest.responseText;
-    }
-  };
-
-  staffsRequest.onload = function () {
-    if (staffsRequest.status === 200) {
-      document.getElementById("staff").innerHTML =
-        staffsRequest.responseText;
-    }
-  };
-
-  contactRequest.onload = function () {
-    if (contactRequest.status === 200) {
-      document.getElementById("contactUs").innerHTML =
-        contactRequest.responseText;
-    }
-  };
-
-  footerRequest.onload = function () {
-    if (footerRequest.status === 200) {
-      document.getElementById("footer").innerHTML =
-        footerRequest.responseText;
-    }
-  };
-
-  navigationRequest.open("GET", "components/navigation.html", true);
-  navigationRequest.send();
-
-  mobilenavRequest.open("GET", "components/mobilenav.html", true);
-  mobilenavRequest.send();
-
-  landingPageRequest.open("GET", "views/landingPage.html", true);
-  landingPageRequest.send();
-
-  aboutUsRequest.open("GET", "views/aboutus.html", true);
-  aboutUsRequest.send();
-
-  staffsRequest.open("GET", "views/staffs.html", true);
-  staffsRequest.send();
-
-  contactRequest.open("GET", "views/contact.html", true);
-  contactRequest.send();
-
-  footerRequest.open("GET", "components/footer.html", true);
-  footerRequest.send();
+  requests.forEach(request => {
+      const xhr = new XMLHttpRequest();
+      xhr.onload = function () {
+          if (xhr.status === 200) {
+              document.getElementById(request.elementId).innerHTML = xhr.responseText;
+          }
+      };
+      xhr.open("GET", request.url, true);
+      xhr.send();
+  });
 });
 
 document.addEventListener("scroll", () => {
   const navbar = document.querySelector(".navbar");
+  const links = {
+      home: document.querySelector(".nav-link[href='#home']"),
+      aboutUs: document.querySelector(".nav-link[href='#aboutus']"),
+      staff: document.querySelector(".nav-link[href='#staff']"),
+      contactUs: document.querySelector(".nav-link[href='#contact']")
+  };
 
-  const homeLink = document.querySelector(".nav-link[href='#home']");
-  const aboutUsLink = document.querySelector(".nav-link[href='#aboutus']");
-  const staffLink = document.querySelector(".nav-link[href='#staff']");
-  const contactUsLink = document.querySelector(".nav-link[href='#contact']");
+  const sections = {
+      landingPage: document.getElementById("landingPage"),
+      aboutUs: document.getElementById("aboutUs"),
+      staff: document.getElementById("staff"),
+      contactUs: document.getElementById("contactUs")
+  };
 
-  const landingPage = document.getElementById("landingPage");
-  const aboutUs = document.getElementById("aboutUs");
-  const staff = document.getElementById("staff");
-  const contactUs = document.getElementById("contactUs");
-
-  const landingPageHeight = landingPage.offsetHeight;
-  const aboutUsHeight = aboutUs.offsetHeight;
-  const staffHeight = staff.offsetHeight;
+  const heights = {
+      landingPage: sections.landingPage.offsetHeight,
+      aboutUs: sections.aboutUs.offsetHeight,
+      staff: sections.staff.offsetHeight
+  };
 
   // Change navbar styles on scroll
   if (window.scrollY > 0) {
-    navbar.style.paddingBlock = "0.5rem";
-    navbar.style.boxShadow = "0 0 8px 3px rgba(0, 0, 0, 0.3)";
+      navbar.style.paddingBlock = "0.5rem";
+      navbar.style.boxShadow = "0 0 8px 3px rgba(0, 0, 0, 0.3)";
   } else {
-    navbar.style.paddingBlock = "1rem";
-    navbar.style.boxShadow = "0 0 0 0 rgba(0, 0, 0, 0)";
+      navbar.style.paddingBlock = "1rem";
+      navbar.style.boxShadow = "none";
   }
 
-  homeLink.style.fontWeight = "normal";
-  aboutUsLink.style.fontWeight = "normal";
-  staffLink.style.fontWeight = "normal";
-  contactUsLink.style.fontWeight = "normal";
+  Object.values(links).forEach(link => {
+      link.style.fontWeight = "normal";
+  });
 
   // Set font weights based on scroll position
-  if (window.scrollY < landingPageHeight) {
-    homeLink.style.fontWeight = "700"; 
-  } else if (window.scrollY < landingPageHeight + aboutUsHeight) {
-    aboutUsLink.style.fontWeight = "700";
-  } else if (window.scrollY < landingPageHeight + aboutUsHeight + staffHeight) {
-    staffLink.style.fontWeight = "700";
-  } else if (window.scrollY < landingPageHeight + aboutUsHeight + staffHeight + contactUs) {
-    contactUsLink.style.fontWeight = "700";
+  if (window.scrollY < heights.landingPage) {
+      links.home.style.fontWeight = "700";
+  } else if (window.scrollY < heights.landingPage + heights.aboutUs) {
+      links.aboutUs.style.fontWeight = "700";
+  } else if (window.scrollY < heights.landingPage + heights.aboutUs + heights.staff) {
+      links.staff.style.fontWeight = "700";
   } else {
-    contactUsLink.style.fontWeight = "700";
+      links.contactUs.style.fontWeight = "700";
   }
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-  // Get the current URL hash
-  const currentPage = window.location.hash || '#home';
+fetch("components/chatBot.html")
+  .then((response) => response.text())
+  .then((data) => {
+      document.getElementById("chatBot").innerHTML = data;
 
-  // Remove 'active' class from all links
-  const links = document.querySelectorAll('.nav-link');
-  links.forEach(link => link.classList.remove('active'));
+      const script = document.createElement("script");
+      script.text = `
+          const qaPairs = {
+              "What is the age range for students at St. Emilie Learning Center?": "We accept students from kindergarten through grade 6, typically ages 4 to 12.",
+              "How can I enroll my child at St. Emilie Learning Center?": "You can begin the enrollment process by filling out the application form available on our website or by visiting our school office.",
+              "What are the tuition fees?": "Tuition fees vary by grade level. Please visit the Tuition & Fees section of our website or contact our office for more details.",
+              "Does the school have a uniform policy?": "Yes, we have a standard uniform that all students are required to wear. You can purchase uniforms at our school store.",
+              "What are the school hours?": "School hours are from 8:00 AM to 4:00 PM, Monday to Friday."
+          };
 
-  // Add 'active' class to the current page link
-  const activeLink = document.querySelector(`a[href="${currentPage}"]`);
-  if (activeLink) {
-    activeLink.classList.add('active');
-  }
-});
+          function init() {
+              let res_elm = document.createElement("div");
+              res_elm.innerHTML = "Welcome to St. Emilie Learning Center! How can I assist you today?";
+              res_elm.setAttribute("class", "left");
+              document.getElementById('msg').appendChild(res_elm);
+
+              const questionContainer = document.getElementById('questionContainer');
+              for (const question in qaPairs) {
+                  const button = document.createElement("button");
+                  button.innerHTML = question;
+                  button.className = "question-button";
+                  button.onclick = () => handleQuestionClick(question);
+                  questionContainer.appendChild(button);
+              }
+          }
+
+          const handleQuestionClick = (question) => {
+              document.getElementById('msg_send').value = question;
+              document.getElementById('reply').click();
+          };
+
+          document.getElementById('reply').addEventListener("click", (e) => {
+              e.preventDefault();
+              const req = document.getElementById('msg_send').value.trim();
+
+              if (!req) return;
+
+              let data_req = document.createElement('div');
+              let container1 = document.createElement('div');
+
+              container1.setAttribute("class", "msgCon1");
+              data_req.innerHTML = req;
+              data_req.setAttribute("class", "right");
+
+              let message = document.getElementById('msg');
+              message.appendChild(container1);
+              container1.appendChild(data_req);
+
+              document.getElementById('msg_send').value = "";
+
+              setTimeout(() => {
+                  let res = qaPairs[req] || "Sorry, I couldn't find an answer to that.";
+
+                  let data_res = document.createElement('div');
+                  let container2 = document.createElement('div');
+
+                  container2.setAttribute("class", "msgCon2");
+                  data_res.innerHTML = res;
+                  data_res.setAttribute("class", "left");
+
+                  message.appendChild(container2);
+                  container2.appendChild(data_res);
+
+                  const scroll = () => {
+                      const scrollMsg = document.getElementById('msg');
+                      scrollMsg.scrollTop = scrollMsg.scrollHeight;
+                  };
+                  scroll();
+              }, 800); 
+          });
+
+          init(); 
+
+          document.addEventListener("click", function (event) {
+              const offcanvas = document.getElementById("offcanvasScrolling");
+              const chatBotButton = document.querySelector(".chatBotButton");
+
+              if (!offcanvas.contains(event.target) && !chatBotButton.contains(event.target)) {
+                  const offcanvasInstance = bootstrap.Offcanvas.getInstance(offcanvas);
+                  if (offcanvasInstance) {
+                      offcanvasInstance.hide();
+                  }
+              }
+          });
+      `;
+      document.body.appendChild(script);
+  })
+  .catch((error) => console.error("Error loading chatbot:", error));
